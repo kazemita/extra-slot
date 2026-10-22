@@ -3,6 +3,7 @@
 Code, pre-registrations and raw results for the paper
 
 > *Extra-slot fitting reduces compromise locations when correlated EEG sources are under-counted*
+> (submitted to the Journal of Neural Engineering)
 
 When a least-squares multi-source fit (here: alternating projection, AP) is given one source fewer than are
 active, it is often drawn to a *compromise* location between two correlated sources, because that location
@@ -103,3 +104,11 @@ not deposited in a public registry, so the fingerprints are what allow later cha
 ## Licence
 
 MIT
+
+## Added: measures of Sotudeh et al (2023) (not pre-registered)
+`eval2023.py SETTING PART NPARTS [interf]` re-runs the realisations of the EEG settings (same seeds, identical data)
+with MUSIC, RAP-MUSIC, dipole fitting (downhill simplex), MV beamformer, sLORETA, AP, AP6, ESpol+1 and ES+1, and records
+per-source localisation error, signal correlation and execution time; `interf` adds the local interference.
+`cd results/eval2023 && python3 ../../tables2023.py` regenerates Tables 1-6 of the paper (`tables2023_result.txt`).
+Note: an earlier version of `baselines.py` used an absolute ridge (1e-12) in TRAP-MUSIC that was too large for the
+70-channel lead field's units; it is now relative to the lead-field scale (TRAP-MUSIC is no longer used in the paper).
